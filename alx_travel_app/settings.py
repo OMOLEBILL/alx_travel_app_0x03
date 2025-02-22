@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'listings',
-    'drf_yasg'
+    'drf_yasg',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -88,11 +89,11 @@ WSGI_APPLICATION = "alx_travel_app.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "travel",
-        "USER": "travel",
-        "PASSWORD": "travelling@2025",
-        "HOST": "localhost",
-        "PORT": "3306",
+        "NAME": env("NAME"),
+        "USER": env("USER"),
+        "PASSWORD": env("PASSWORD"),
+        "HOST": env("HOST"),
+        "PORT": env("PORT"),
     }
 }
 
@@ -145,6 +146,7 @@ REST_FRAMEWORK = {
 # Celery settings
 CELERY_BROKER_URL = env('CELERY_BROKER_URL')
 CELERY_RESULT_BACKEND = env('CELERY_RESULT_BACKEND')
+CELERY_WORKER_POOL = 'solo'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'

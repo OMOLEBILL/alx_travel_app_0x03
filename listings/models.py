@@ -11,10 +11,11 @@ class Listing(models.Model):
         return self.title
 
 class Booking(models.Model):
+    email = models.EmailField()
     listing = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name="bookings")
     user_name = models.CharField(max_length=255)
-    check_in_date = models.DateField()
-    check_out_date = models.DateField()
+    check_in_date = models.DateTimeField(auto_now_add=True)
+    check_out_date = models.DateTimeField()
 
     def __str__(self):
         return f"Booking for {self.listing.title} by {self.user_name}"
